@@ -39,13 +39,24 @@ function Main() {
   const [selectedCells, setSelectedCells] = useState([]);
   const [nonWalkableCells, setNonWalkableCells] = useState([]);
   const [path, setPath] = useState(
-    JSON.parse(localStorage.getItem("path")) || []
+  []
   );
   const [savedPaths, setSavedPaths] = useState(
-    JSON.parse(localStorage.getItem("savedPaths")) || []
+    []
   );
   const [loadedPathDescription, setLoadedPathDescription] = useState("");
   const [markingNonWalkable, setMarkingNonWalkable] = useState(false);
+
+  useEffect(() => {
+    const savedPath = JSON.parse(localStorage.getItem("path")) || [];
+    setPath(savedPath);
+  }, []);
+
+
+  useEffect(() => {
+    const savedPaths = JSON.parse(localStorage.getItem("savedPaths")) || [];
+    setSavedPaths(savedPaths);
+  }, []);
 
   useEffect(() => {
     if (selectedCells.length > 1) {
