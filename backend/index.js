@@ -1,6 +1,6 @@
 import express, { json } from "express";
 import { connect } from "mqtt";
-import  cors  from "cors";
+import cors from "cors";
 
 // MQTT Broker Connection (Replace with your server's IP or domain)
 const mqttBrokerUrl = "mqtt://13.127.22.78:1883"; // Cloud IP or local IP
@@ -38,10 +38,17 @@ app.post("/send-commands", (req, res) => {
 
   // Send commands to the ESP32 via MQTT
   commands.forEach((command, index) => {
-    setTimeout(() => {
-      mqttClient.publish(mqttTopic, (command));
-      console.log("Command sent:", command);
-    }, index * 795); // Sending each command with a delay of 2 seconds
+    if (command === "left") {
+      setTimeout(() => {
+        mqttClient.publish(mqttTopic, command);
+        console.log("Command sent:", command);
+      }, index * 778); // Sending each command with a delay of 2 seconds
+    } else {
+      setTimeout(() => {
+        mqttClient.publish(mqttTopic, command);
+        console.log("Command sent:", command);
+      }, index * 795); // Sending each command with a delay of 2 seconds
+    }
   });
 
   res.send("Commands sent to the robot");
@@ -49,6 +56,6 @@ app.post("/send-commands", (req, res) => {
 
 // Start Express Server
 const PORT = 8000;
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server is running on port ${PORT}`);
 });

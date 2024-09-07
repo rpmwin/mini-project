@@ -269,6 +269,7 @@ function Main() {
       } else {
         if (directions[i] === "up" || directions[i] === "down") {
           if (currentDirection === "east" && directions[i] === "up") {
+            
             commands.push(
               `Direction ${currentDirection} move forward ${stepCount} steps, turn left, new direction ${newDirection}`
             );
@@ -278,11 +279,11 @@ function Main() {
             );
           } else if (currentDirection === "east" && directions[i] === "down") {
             commands.push(
-              `Direction ${currentDirection} move forward ${stepCount} steps, turn right, new direction ${newDirection}`
+              `Direction ${currentDirection} move forward ${stepCount} steps, turn left, new direction ${newDirection}`
             );
           } else if (currentDirection === "west" && directions[i] === "down") {
             commands.push(
-              `Direction ${currentDirection} move forward ${stepCount} steps, turn left, new direction ${newDirection}`
+              `Direction ${currentDirection} move forward ${stepCount} steps, turn right, new direction ${newDirection}`
             );
           }
         } else {
