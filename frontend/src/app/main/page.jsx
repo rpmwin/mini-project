@@ -301,7 +301,7 @@ function Main() {
     // const commandArray = generateCommandArray(path); // Generate command array from path
     try {
       axios
-        .post("http://192.168.31.117:8000/send-commands", {
+        .post("http://13.127.22.78:8000/send-commands", {
           commands: commandArray,
         })
         .then((response) => {
