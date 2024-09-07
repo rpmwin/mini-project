@@ -38,12 +38,8 @@ function Main() {
 
   const [selectedCells, setSelectedCells] = useState([]);
   const [nonWalkableCells, setNonWalkableCells] = useState([]);
-  const [path, setPath] = useState(
-  []
-  );
-  const [savedPaths, setSavedPaths] = useState(
-    []
-  );
+  const [path, setPath] = useState([]);
+  const [savedPaths, setSavedPaths] = useState([]);
   const [loadedPathDescription, setLoadedPathDescription] = useState("");
   const [markingNonWalkable, setMarkingNonWalkable] = useState(false);
 
@@ -51,7 +47,6 @@ function Main() {
     const savedPath = JSON.parse(localStorage.getItem("path")) || [];
     setPath(savedPath);
   }, []);
-
 
   useEffect(() => {
     const savedPaths = JSON.parse(localStorage.getItem("savedPaths")) || [];
@@ -269,7 +264,6 @@ function Main() {
       } else {
         if (directions[i] === "up" || directions[i] === "down") {
           if (currentDirection === "east" && directions[i] === "up") {
-            
             commands.push(
               `Direction ${currentDirection} move forward ${stepCount} steps, turn left, new direction ${newDirection}`
             );
@@ -313,7 +307,7 @@ function Main() {
     // const commandArray = generateCommandArray(path); // Generate command array from path
     try {
       axios
-        .post("http://13.127.22.78:8000/send-commands", {
+        .post("https://amr-backend.rpmcode.site/send-commands", {
           commands: commandArray,
         })
         .then((response) => {
