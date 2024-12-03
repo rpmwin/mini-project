@@ -307,7 +307,7 @@ function Main() {
     // const commandArray = generateCommandArray(path); // Generate command array from path
     try {
       axios
-        .post("https://amr-backend.rpmcode.site/send-commands", {
+        .post("http://13.61.89.255:8000/send-commands", {
           commands: commandArray,
         })
         .then((response) => {
